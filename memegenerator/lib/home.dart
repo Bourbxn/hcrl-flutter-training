@@ -32,6 +32,24 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       body: PageView(
         children: [
+          Stack(
+            children: [
+              Column(
+                children: [
+                  Container(
+                    padding: EdgeInsets.all(100.0),
+                    child: Image(image: AssetImage('assets/ellipse.png'),
+                    ),
+                  ),
+                ],
+              ),
+              Container(
+                child: Image(image: AssetImage('assets/shiba.png'),
+                ),
+              ),
+            ],
+          ),
+          /*
           Container(
             color: Colors.amber,
             child: Image(image: AssetImage('assets/shiba.png'),
@@ -42,7 +60,7 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
            Container(
             color: Colors.blue,
-          ),
+          ),*/
         ],
       ),
       bottomNavigationBar: BottomNavigationBar(
