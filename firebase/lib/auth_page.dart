@@ -3,22 +3,22 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
-class  AuthPage extends StatefulWidget {
-  const AuthPage({ Key? key }) : super(key: key);
+class AuthPage extends StatefulWidget {
+  const AuthPage({Key? key}) : super(key: key);
 
   @override
   _AuthPageState createState() => _AuthPageState();
 }
 
 class _AuthPageState extends State<AuthPage> {
-  late String _email,_password;
+  late String _email, _password;
   final auth = FirebaseAuth.instance;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text('Register/Login'),
-        ),
+      ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
@@ -26,11 +26,10 @@ class _AuthPageState extends State<AuthPage> {
             padding: const EdgeInsets.all(12.0),
             child: TextField(
               decoration: InputDecoration(
-                labelText: 
-                "Email",
+                labelText: "Email",
                 hintText: 'Insert your email here',
               ),
-              onChanged: (value){
+              onChanged: (value) {
                 setState(() {
                   _email = value.trim();
                 });
@@ -42,11 +41,10 @@ class _AuthPageState extends State<AuthPage> {
             child: TextField(
               obscureText: true,
               decoration: InputDecoration(
-                labelText: 
-                "Password",
+                labelText: "Password",
                 hintText: 'Insert your password here',
               ),
-              onChanged: (value){
+              onChanged: (value) {
                 setState(() {
                   _password = value.trim();
                 });
@@ -54,36 +52,36 @@ class _AuthPageState extends State<AuthPage> {
             ),
           ),
           ElevatedButton.icon(
-            onPressed: () async{
+            onPressed: () async {
               try {
                 await auth.createUserWithEmailAndPassword(
-                  email: _email, password: _password);
+                    email: _email, password: _password);
                 print("Register!");
                 Navigator.of(context).pushReplacement(
-                  MaterialPageRoute(builder: (context) => HomePage()));
-              } on FirebaseAuthException catch(e) {
+                    MaterialPageRoute(builder: (context) => HomePage()));
+              } on FirebaseAuthException catch (e) {
                 print(e.message);
               }
-            }, 
-            icon: Icon(Icons.add), 
+            },
+            icon: Icon(Icons.add),
             label: Text(
               "Register",
               style: TextStyle(fontSize: 20),
             ),
           ),
           ElevatedButton.icon(
-            onPressed: () async{
-               try {
+            onPressed: () async {
+              try {
                 await auth.signInWithEmailAndPassword(
-                  email: _email, password: _password);
+                    email: _email, password: _password);
                 print("Login!");
-                 Navigator.of(context).pushReplacement(
-                  MaterialPageRoute(builder: (context) => HomePage()));
-              } on FirebaseAuthException catch(e) {
+                Navigator.of(context).pushReplacement(
+                    MaterialPageRoute(builder: (context) => HomePage()));
+              } on FirebaseAuthException catch (e) {
                 print(e.message);
               }
-            }, 
-            icon: Icon(Icons.login), 
+            },
+            icon: Icon(Icons.login),
             label: Text(
               "Login",
               style: TextStyle(fontSize: 20),
